@@ -7,3 +7,9 @@ using
 - GoGin
 - GORM
 - GoJWT
+
+added feature
+- JWT auth
+- Middleware auth
+- CRUD 
+- Endpoint Testing (integration test) using Golang Test package
