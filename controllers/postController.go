@@ -15,12 +15,7 @@ func PostsCreate(c *gin.Context) {
 		Title string
 	}
 
-	if c.Bind(&body) != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Title and Body are required"})
-		return
-	}
-
-	if body.Body == "" || body.Title == "" {
+	if c.Bind(&body) != nil || body.Body == "" || body.Title == "" {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Title and Body are required"})
 		return
 	}

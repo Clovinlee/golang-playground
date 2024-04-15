@@ -18,6 +18,7 @@ func TestUser(t *testing.T) {
 	// var user models.User = models.User{Email: "test99@gmail.com", Password: "testpassword", Name: "Test User"}
 
 	t.Run("Register", func(t *testing.T) {
+
 		if user.Email != "" {
 			t.Skip("Test skipped.. (User already registered)")
 			return
@@ -34,6 +35,9 @@ func TestUser(t *testing.T) {
 				if res.StatusCode != http.StatusBadRequest {
 					t.Errorf("Expected status code: %d, got %d", http.StatusBadRequest, res.StatusCode)
 				}
+
+				defer res.Body.Close()
+
 			})
 
 			t.Run("Empty Email", func(t *testing.T) {
@@ -49,6 +53,9 @@ func TestUser(t *testing.T) {
 				if res.StatusCode != http.StatusBadRequest {
 					t.Errorf("Expected status code: %d, got %d", http.StatusBadRequest, res.StatusCode)
 				}
+
+				defer res.Body.Close()
+
 			})
 
 			t.Run("Empty Password", func(t *testing.T) {
@@ -64,6 +71,8 @@ func TestUser(t *testing.T) {
 				if res.StatusCode != http.StatusBadRequest {
 					t.Errorf("Expected status code: %d, got %d", http.StatusBadRequest, res.StatusCode)
 				}
+				defer res.Body.Close()
+
 			})
 
 		})
@@ -85,6 +94,9 @@ func TestUser(t *testing.T) {
 				user.Password = payload["password"] // Unhashed
 				user.Name = payload["name"]
 			}
+
+			defer res.Body.Close()
+
 		})
 
 		// Email exist on register check
@@ -107,6 +119,8 @@ func TestUser(t *testing.T) {
 				if res.StatusCode != http.StatusBadRequest {
 					t.Errorf("Expected status code: %d, got %d", http.StatusBadRequest, res.StatusCode)
 				}
+
+				defer res.Body.Close()
 			})
 		}(t)
 	})
