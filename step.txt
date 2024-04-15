@@ -20,4 +20,14 @@
 
 // go get -u golang.org/x/crypto/
 
+// == GUIDELINE ON SENDING REQUESTS AND UNFORMAT ==
+// == UNFORMATTING CAN BE DONE USING STRUCT FOR STRUCTURED DATA ==
+// req, _ := http.NewRequest("GET", baseUrl+registerUrl, nil)
+// req.Header.Set("Content-Type", "application/json; charset=utf-8")
+// client := &http.Client{}
+// resp, e := client.Do(req)
+// respBody, e := io.ReadAll(resp.Body)
+// var result map[string]any
+// json.Unmarshal([]byte(respBody), &result)
+
 CompileDaemon -command="./gochris"

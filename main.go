@@ -44,5 +44,11 @@ func main() {
 
 	})
 
+	r.GET("/test", func(c *gin.Context) {
+		c.JSON(http.StatusOK, gin.H{
+			"message": "Hello World",
+		})
+	})
+
 	r.Run() // listen and serve based on port of env
 }
